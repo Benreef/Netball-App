@@ -26,7 +26,7 @@ function Login({ setIsLoggedIn, setUserName }) {
       body: JSON.stringify(data)
     })
       .then(res => {
-        console.log(res)
+        console.log(res.json())
         return res.json()
       })
       .then(res => {
@@ -61,7 +61,7 @@ function Login({ setIsLoggedIn, setUserName }) {
             onChange={handlePassword}
           />
         </fieldset>
-        <button type='submit' onClick={handleLogin}>Log in</button>
+        <Link to='/' className='login-btn' type='submit' onClick={handleLogin}>Log In</Link>
       </form>
       <p>Don't have an account? <a href="/SignUp">Click Here To Sign Up</a></p>
     </section>
