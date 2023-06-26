@@ -6,12 +6,15 @@ const DefaultLayout = ({ children }) => {
 		<Container>
 			<Box
 				sx={{
+					margin: '100px',
 					display: "flex",
 					flexDirection: "column",
 					alignItems: "center",
 					justifyContent: "center",
-					minHeight: "75vh", // adjust as needed
+					// marginTop: '150px'
+					// : "1vh", // adjust as needed
 				}}
+		
 			>
 				{children}
 			</Box>

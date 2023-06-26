@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+
 function Login({ setIsLoggedIn, setUserName }) {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -17,29 +18,26 @@ function Login({ setIsLoggedIn, setUserName }) {
 
   const handleLogin = event => {
     event.preventDefault();
-    const data = {email, password}
-    console.log({email, password})
-    console.log('pre fetch')
+
+    const data = { email: email, password: password };
+    console.log('data being returned', password)
+
     fetch('/api/sessions', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     })
-      .then(res => {
-        console.log(res.json())
-        return res.json()
-      })
+      .then(res => res.json())
       .then(res => {
         setIsLoggedIn(true);
         setUserName(res.email);
-        console.log('login?') 
       })
       .then(() => navigate("/", { replace: true }));
   };
-
+  
   return (
     <section className='login'>
-      <form onSubmit={handleEmail} id='loginForm'>
+    <form onSubmit={handleLogin} id='loginForm'> 
         <h2>Log in</h2>
         <fieldset>
           <label htmlFor='email'>Email: </label>
@@ -61,7 +59,7 @@ function Login({ setIsLoggedIn, setUserName }) {
             onChange={handlePassword}
           />
         </fieldset>
-        <Link to='/' className='login-btn' type='submit' onClick={handleLogin}>Log In</Link>
+        <button className='login-btn' type='submit' onClick={handleLogin}>Log In</button>
       </form>
       <p>Don't have an account? <a href="/SignUp">Click Here To Sign Up</a></p>
     </section>

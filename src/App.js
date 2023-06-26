@@ -10,16 +10,15 @@ import { useState } from 'react';
 
 function App() {
 
-  const [IsLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userName, setUserName] = useState('')
 
-  if (IsLoggedIn === true) {
+  if (isLoggedIn === true) {
     return (
       <>
       <NavBar /> 
-      <h2>Welcome, {userName}!</h2>
+        {isLoggedIn && <h2>Welcome, {userName}!</h2>}
       <Routes>
-      
         <Route path='/' element={<HomePage />} />
         <Route path='/About' element={<AboutPage />} />
         <Route path="/Logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />}></Route>
@@ -32,7 +31,6 @@ function App() {
       <>
       <NavBar /> 
       <Routes>
-        <Route path='/' element={<HomePage />} />
         <Route path='/About' element={<AboutPage />} />
         <Route path="/Signup" element={<SignUpForm />}></Route>
         <Route path='/Login' element={<Login setIsLoggedIn={setIsLoggedIn} setUserName={setUserName} />} />

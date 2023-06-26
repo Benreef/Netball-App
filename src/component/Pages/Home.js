@@ -1,21 +1,20 @@
-import DefaultLayout from "../Layout/DefaultLayout";
-// import Spline from '@splinetool/react-spline'
-// import { Application } from '@splinetool/runtime';
+import React from 'react';
+import { useState, useEffect } from 'react';
+import DefaultLayout from '../Layout/DefaultLayout';
+import CountdownTimer from './CountDownTimer';
+import Clock from './Clock';
+import Scoring from './Scoring';
+import WeatherInfo from './Weather';
 
 const HomePage = () => {
-	const aboutMeParagraph = `
-		Hi I am a passionate developer who loves CSS and FE development!
-	`;
-
-	return (
+  return (
     <DefaultLayout>
-      <h1>Netball Statistics</h1>
-      <p>A full stack application for teams to improve</p>
-      
-      {/* <Spline scene="https://prod.spline.design/QpWM6EpdU6xHc8zu/scene.splinecode" /> */}
+      <WeatherInfo />
+      <CountdownTimer />
+      <Clock />
+      <Scoring />
     </DefaultLayout>
-
-	);
+  );
 };
 
 export default HomePage;
