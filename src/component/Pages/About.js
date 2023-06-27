@@ -1,17 +1,16 @@
 import DefaultLayout from "../Layout/DefaultLayout";
 // import Paragraph from "../Layout/Paragraph";
-
+import TeamList from './TeamList';
 const AboutPage = () => {
-	const aboutMeParagraph = `
-		Hi I am a passionate developer who loves CSS and FE development!
-	`;
-
+	
 	return (
     <DefaultLayout>
       <h1>About Page</h1>
 			    
       <h1>Netball Statistics</h1>
       <p>A full stack application for teams to improve</p>
+      <p>Current Teams added:</p>
+      <TeamList />
     </DefaultLayout>
 	);
 };

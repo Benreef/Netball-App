@@ -30,39 +30,39 @@ const Scoring = () => {
   const [oppositionScore, setOppositionScore] = useState(0);
   const [oppositionMissed, setOppositionMissed] = useState(0);
 
-  useEffect(() => {
-    // TODO
-    // need to include auth once log in fixed
-    const fetchUserInfo = async () => {
-      try {
-        // TODO
-        const response = await fetch('/api/user', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          }
+  // useEffect(() => {
+  //   // TODO
+  //   // need to include auth once log in fixed
+  //   const fetchUserInfo = async () => {
+  //     try {
+  //       // TODO
+  //       const response = await fetch('/api/user', {
+  //         method: 'GET',
+  //         headers: {
+  //           'Content-Type': 'application/json'
+  //         }
           
-        });
+  //       });
 
-        if (response.ok) {
-          const user = await response.json();
-          const { gameId, playerId, currentQuarter } = user;
+  //       if (response.ok) {
+  //         const user = await response.json();
+  //         const { gameId, playerId, currentQuarter } = user;
 
-          setUserInfo({
-            gameId,
-            playerId,
-            currentQuarter
-          });
-        } else {
-          throw new Error('Failed to fetch user information');
-        }
-      } catch (error) {
-        console.error('Error fetching user information:', error);
-      }
-    };
+  //         setUserInfo({
+  //           gameId,
+  //           playerId,
+  //           currentQuarter
+  //         });
+  //       } else {
+  //         throw new Error('Failed to fetch user information');
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching user information:', error);
+  //     }
+  //   };
 
-    fetchUserInfo();
-  }, []);
+  //   fetchUserInfo();
+  // }, []);
 
 
   const handleIncrement = async (position) => {
@@ -150,7 +150,7 @@ const Scoring = () => {
         scored: scored
       };
 // TODO
-      await fetch('/api/score', {
+      await fetch('/api/scoring', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -161,6 +161,33 @@ const Scoring = () => {
       console.log('Score data stored successfully');
     } catch (error) {
       console.error('Error storing score data:', error);
+    }
+  };
+  const handleFinishGame = async () => {
+    try {
+      // TODO: Perform any necessary calculations or validation before sending the data
+
+      const { gameId, playerId, currentQuarter } = userInfo;
+
+      const finishGameData = {
+        game_id: gameId,
+        player_id: playerId,
+        quarter: currentQuarter,
+        // Include any other relevant data to represent the end of the game
+        // For example, final scores, game duration, etc.
+      };
+
+      await fetch('/api/finish_game', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(finishGameData)
+      });
+
+      console.log('Finish game data stored successfully');
+    } catch (error) {
+      console.error('Error storing finish game data:', error);
     }
   };
 
@@ -229,6 +256,8 @@ const Scoring = () => {
         <p>WD: {centerPassCounters.WD}</p>
         <button onClick={() => handleCenterPassIncrement('WD')}>WD</button>
       </div>
+
+      <button onClick={handleFinishGame}>Finish Game</button>
     </div>
   );
 };
