@@ -26,7 +26,7 @@ const CreateTeamForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const teamData = {
+    const data = {
       teamName,
       coachName,
       players
@@ -34,8 +34,8 @@ const CreateTeamForm = () => {
 
     fetch('/api/teams', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(teamData)
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
     })
       .then(res => res.json())
       .then(data => {

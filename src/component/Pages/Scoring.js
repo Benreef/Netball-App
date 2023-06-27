@@ -71,12 +71,12 @@ const Scoring = () => {
         ...prevCounters,
         [position]: prevCounters[position] + 1
       }));
-      const { gameId, playerId, currentQuarter } = userInfo;
+      const { gameId, playerId, quarter } = userInfo;
 
       const intercept_data = {
         game_id: gameId,
         player_id: playerId, 
-        quarter: currentQuarter, 
+        quarter: quarter, 
         position: position
       };
 // TODO
@@ -101,12 +101,12 @@ const Scoring = () => {
         [position]: prevCounters[position] + 1
       }));
 
-      const { gameId, playerId, currentQuarter } = userInfo;
+      const { gameId, playerId, quarter } = userInfo;
 
       const centerpass_data = {
         game_id: gameId,
         player_id: playerId,
-        quarter: currentQuarter,
+        quarter: quarter,
         position: position
       };
 // TODO
@@ -124,73 +124,77 @@ const Scoring = () => {
     }
   };
 
-  const handleScoreIncrement = async (team, scored) => {
-    try {
-      if (team === 'home') {
-        if (scored) {
-          setHomeScore((prevScore) => prevScore + 1);
-        } else {
-          setHomeMissed((prevMissed) => prevMissed + 1);
-        }
-      } else if (team === 'opposition') {
-        if (scored) {
-          setOppositionScore((prevScore) => prevScore + 1);
-        } else {
-          setOppositionMissed((prevMissed) => prevMissed + 1);
-        }
+  const handleScoreIncrement = (team, scored) => {
+
+    let homeScoreUpdate = null;
+    let homeMissedUpdate = null;
+    let oppositionScoreUpdate = null;
+    let oppositionMissedUpdate = null;
+  
+    if (team === 'home') {
+      if (scored) {
+        homeScoreUpdate = homeScore + 1;
+      } else {
+        homeMissedUpdate = homeMissed + 1;
       }
-
-      const { gameId, playerId, currentQuarter } = userInfo;
-
-      const score_data = {
-        game_id: gameId,
-        player_id: playerId,
-        quarter: currentQuarter,
-        team: team === 'home' ? 'home' : 'opposition',
-        scored: scored
-      };
-// TODO
-      await fetch('/api/scoring', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(score_data)
-      });
-
-      console.log('Score data stored successfully');
-    } catch (error) {
-      console.error('Error storing score data:', error);
+    } else if (team === 'opposition') {
+      if (scored) {
+        oppositionScoreUpdate = oppositionScore + 1;
+      } else {
+        oppositionMissedUpdate = oppositionMissed + 1;
+      }
     }
-  };
-  const handleFinishGame = async () => {
-    try {
-      // TODO: Perform any necessary calculations or validation before sending the data
-
-      const { gameId, playerId, currentQuarter } = userInfo;
-
-      const finishGameData = {
-        game_id: gameId,
-        player_id: playerId,
-        quarter: currentQuarter,
-        // Include any other relevant data to represent the end of the game
-        // For example, final scores, game duration, etc.
-      };
-
-      await fetch('/api/finish_game', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(finishGameData)
-      });
-
-      console.log('Finish game data stored successfully');
-    } catch (error) {
-      console.error('Error storing finish game data:', error);
-    }
+  
+    const { gameId, playerId, quarter } = userInfo;
+  
+    const data = {
+      game_id: gameId,
+      player_id: playerId,
+      quarter: quarter,
+      team: team === 'home' ? 'home' : 'opposition',
+      scored: scored
+    };
+  
+    fetch('/api/scoring', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+      })
+      
+  
+    // Update state with the new score/missed values
+    setHomeScore((prevScore) => homeScoreUpdate || prevScore);
+    setHomeMissed((prevMissed) => homeMissedUpdate || prevMissed);
+    setOppositionScore((prevScore) => oppositionScoreUpdate || prevScore);
+    setOppositionMissed((prevMissed) => oppositionMissedUpdate || prevMissed);
   };
 
+  const handleFinishGame = () => {
+    const { gameId, playerId, currentQuarter } = userInfo;
+  
+    const finishGameData = {
+      game_id: gameId,
+      player_id: playerId,
+      quarter: currentQuarter,
+    };
+  
+    fetch('/api/finish_game', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(finishGameData)
+    })
+      .then(() => {
+        console.log('Finish game data stored successfully');
+      })
+    
+  };
+  
   // TODO
 // update Home to {{ userTeamInput }}
 // and Oppoisition to {{ userOppInput }}
@@ -200,8 +204,10 @@ const Scoring = () => {
        <div>
         <p>Home Score: {homeScore}</p>
         <p>Home Missed: {homeMissed}</p>
-        <button onClick={() => handleScoreIncrement('home', true)}>Scored</button>
-        <button onClick={() => handleScoreIncrement('home', false)}>Missed</button>
+        <button onClick={() => handleScoreIncrement('home', 'GA', true)}>Home GA Scored</button>
+        <button onClick={() => handleScoreIncrement('home', 'GA', false)}>Home GA Missed</button>
+        <button onClick={() => handleScoreIncrement('home', 'GS', true)}>Home GS Scored</button>
+        <button onClick={() => handleScoreIncrement('home', 'GS', false)}>Home GS Missed</button>
       </div>
       <div>
         <p>Opposition Score: {oppositionScore}</p>

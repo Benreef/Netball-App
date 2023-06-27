@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const TeamList = () => {
   const [teams, setTeams] = useState([]);
 
-  useEffect(() => {
-    fetch('/teams')
+  const fetchTeams = () => {
+    fetch('/api/teams', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    })
       .then(response => response.json())
-      .then(data => {
-        setTeams(data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
+      .then(data => setTeams(data))
+  };
 
+  useState(() => {
+    fetchTeams();
+  }, []);
+  
   return (
     <div>
       <h2>Teams</h2>
