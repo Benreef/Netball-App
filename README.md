@@ -1,7 +1,7 @@
 ## Netball-App
 My fourth and final General Assembly Project - Netball statistics!
 This app allows users (mainly netball teams (Or spectators!)) to effectively track and report their games! After match summary provides a brief break down on how the game went.
-## :computer: [Click here](https://netball-stats-43he.onrender.com) to try my app!
+## :computer: [Click here](https://netball-stats-43he.onrender.com) to try my app! Currently down :(!! 
 
 ## :page_facing_up: About
 **How to use the app:**
