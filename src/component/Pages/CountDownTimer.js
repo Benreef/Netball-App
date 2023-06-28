@@ -9,14 +9,30 @@ const CountdownTimer = () => {
   const [quarter, setQuarter] = useState(1);
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef(null);
+  const audioRef = useRef(null);
 
   useEffect(() => {
     localStorage.setItem("countdownTimer", timer.toString());
   }, [timer]);
 
+  useEffect(() => {
+    const audioElement = audioRef.current;
+    audioElement.play().catch((error) => {
+      // Handle playback error
+      console.log("Audio playback error:", error);
+    });
+  }, []);
+
   const startTimer = () => {
     if (!isRunning) {
       setIsRunning(true);
+      const audioElement = audioRef.current;
+      audioElement.pause();
+      audioElement.currentTime = 0;
+      audioElement.play().catch((error) => {
+        // Handle playback error
+        console.log("Audio playback error:", error);
+      });
       intervalRef.current = setInterval(() => {
         setTimer((prevTimer) => {
           if (prevTimer > 0) {
@@ -68,6 +84,9 @@ const CountdownTimer = () => {
       ) : (
         <button onClick={pauseTimer}>Pause</button>
       )}
+      <audio ref={audioRef}>
+        <source src="src/component/Pages/218318__splicesound__referee-whistle-blow-gymnasium.wav" type="audio/wav" />
+      </audio>
     </div>
   );
 };

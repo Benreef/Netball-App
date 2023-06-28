@@ -1,0 +1,30 @@
+.teams-container {
+  text-align: center;
+  margin-top: 50px;
+  background-color: #d1d1d195;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  border-radius: 25px;
+  border: 1px solid rgb(10, 104, 31);
+}
+
+.teams-container div {
+  border: 1px solid rgb(10, 104, 31);
+  padding: 10px;
+  border-radius: 25px;
+}
+
+.teams-container h3 {
+  margin-top: 0;
+}
+
+.teams-container ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.teams-container li {
+  margin-bottom: 5px;
+}

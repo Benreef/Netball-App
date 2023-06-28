@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-function Logout({ setIsLogged }) {
+function Logout({ setIsLoggedIn }) {
     let navigate = useNavigate()
 
     fetch('/api/sessions', {
@@ -9,8 +9,8 @@ function Logout({ setIsLogged }) {
         body: JSON.stringify()
     })
         .then(res => res.json())
-        .then(res => setIsLogged(false))
-        .then(() => navigate("/", { replace: true }))
+        .then(res => setIsLoggedIn(false))
+        .then(() => navigate("/About", { replace: true }))
 }
 
 export default Logout

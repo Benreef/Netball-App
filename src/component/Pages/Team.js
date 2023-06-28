@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import './team.css'
+import { TextField } from '@mui/material';
 
 const CreateTeamForm = () => {
   const [teamName, setTeamName] = useState('');
@@ -60,55 +62,104 @@ const CreateTeamForm = () => {
       });
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="teamName">Team Name:</label>
-        <input
-          type="text"
-          id="teamName"
-          value={teamName}
-          onChange={(e) => setTeamName(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="coachName">Coach Name:</label>
-        <input
-          type="text"
-          id="coachName"
-          value={coachName}
-          onChange={(e) => setCoachName(e.target.value)}
-        />
-      </div>
-      {players.map((player, index) => (
-        <div key={index}>
-          <label htmlFor={`playerName${index}`}>Player Name:</label>
-          <input
-            type="text"
-            id={`playerName${index}`}
-            value={player.name}
-            onChange={(e) => handlePlayerChange(index, 'name', e.target.value)}
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <div>
+//         <label htmlFor="teamName">Team Name:</label>
+//         <input
+//           type="text"
+//           id="teamName"
+//           value={teamName}
+//           onChange={(e) => setTeamName(e.target.value)}
+//         />
+//       </div>
+//       <div>
+//         <label htmlFor="coachName">Coach Name:</label>
+//         <input
+//           type="text"
+//           id="coachName"
+//           value={coachName}
+//           onChange={(e) => setCoachName(e.target.value)}
+//         />
+//       </div>
+//       {players.map((player, index) => (
+//         <div key={index}>
+//           <label htmlFor={`playerName${index}`}>Player Name:</label>
+//           <input
+//             type="text"
+//             id={`playerName${index}`}
+//             value={player.name}
+//             onChange={(e) => handlePlayerChange(index, 'name', e.target.value)}
+//           />
+//           <label htmlFor={`playerPosition${index}`}>Position:</label>
+//           <select
+//             id={`playerPosition${index}`}
+//             value={player.position}
+//             onChange={(e) => handlePlayerChange(index, 'position', e.target.value)}
+//           >
+//             <option value="GS">GS</option>
+//             <option value="GA">GA</option>
+//             <option value="WA">WA</option>
+//             <option value="C">C</option>
+//             <option value="GD">GD</option>
+//             <option value="WD">WD</option>
+//             <option value="GK">GK</option>
+//           </select>
+//         </div>
+//       ))}
+//       <button type="button" onClick={addPlayer}>Add Player</button>
+//       <button type="submit">Create Team</button>
+//     </form>
+//   );
+// };
+    return (
+      <form onSubmit={handleSubmit} className='team_form'>
+        <div>
+          <TextField
+            id="teamName"
+            label="Team Name"
+            variant="outlined"
+            value={teamName}
+            onChange={(e) => setTeamName(e.target.value)}
           />
-          <label htmlFor={`playerPosition${index}`}>Position:</label>
-          <select
-            id={`playerPosition${index}`}
-            value={player.position}
-            onChange={(e) => handlePlayerChange(index, 'position', e.target.value)}
-          >
-            <option value="GS">GS</option>
-            <option value="GA">GA</option>
-            <option value="WA">WA</option>
-            <option value="C">C</option>
-            <option value="GD">GD</option>
-            <option value="WD">WD</option>
-            <option value="GK">GK</option>
-          </select>
         </div>
-      ))}
-      <button type="button" onClick={addPlayer}>Add Player</button>
-      <button type="submit">Create Team</button>
-    </form>
-  );
-};
-
+        <div>
+          <TextField
+            id="coachName"
+            label="Coach Name"
+            variant="outlined"
+            value={coachName}
+            onChange={(e) => setCoachName(e.target.value)}
+          />
+        </div>
+        {players.map((player, index) => (
+          <div key={index}>
+          <TextField
+                id={`playerName${index}`}
+                label="Player Name"
+                variant="outlined"
+                value={player.name}
+                onChange={(e) => handlePlayerChange(index, 'name', e.target.value)}
+              />
+              <label htmlFor={`playerPosition${index}`}>Position:</label>
+              <select
+                id={`playerPosition${index}`}
+                value={player.position}
+                onChange={(e) => handlePlayerChange(index, 'position', e.target.value)}
+              >
+                <option value="GS">GS</option>
+                <option value="GA">GA</option>
+                <option value="WA">WA</option>
+                <option value="C">C</option>
+                <option value="GD">GD</option>
+                <option value="WD">WD</option>
+                <option value="GK">GK</option>
+              </select>
+            </div>
+        ))}
+        <button type="button" onClick={addPlayer}>Add Player</button>
+        <button type="submit">Create Team</button>
+      </form>
+    );
+}
 export default CreateTeamForm;

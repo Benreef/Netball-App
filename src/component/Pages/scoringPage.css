@@ -1,0 +1,144 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.container {
+  background-color: #d1d1d195;
+  border-radius: 25px;
+  margin-top: 650px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* width: 400px;
+  height: 200px; */
+  /* background-color: lightgray; */
+  text-align: center;
+  padding: 20px;
+}
+
+.select-teams-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.select-teams-container > div {
+  margin: 0 10px;
+}
+
+.match-summary-container {
+  text-align: center;
+  border: 1px solid green;
+  border-radius: 25px;
+  text-decoration: none;
+}
+
+.match-summary-container h1 {
+  margin-top: 0;
+  text-decoration: none;
+}
+
+.match-summary-data {
+  display: grid;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+  border: 1px solid green;
+  border-radius: 25px;
+
+}
+
+.match-summary-data p {
+  margin: 0;
+}
+
+.match-summary-data ul {
+  padding-left: 20px;
+  list-style-type: disc;
+  text-decoration: none;
+  border: 1px solid green;
+  border-radius: 25px;
+}
+
+.match-summary-data button {
+  margin-top: 10px;
+}
+
+.scoring-container {
+  display: grid;
+  grid-template-columns: repeat(1fr);
+  gap: 1rem;
+  justify-items: center;
+  align-items: center;
+  text-align: center;  
+  border: 1px solid green;
+  border-radius: 25px;
+}
+
+.scoring-container h1 {
+  grid-column: 1 / -1;
+}
+
+.scoring-container > div {
+  margin: 0 10px;
+}
+
+.scoring-container button {
+  margin-top: 10px;
+  gap: 5px;
+  background-color: green;
+}
+
+.intercepts-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  border: 1px solid green;
+  border-radius: 25px;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+}
+
+.intercepts-container h1 {
+  grid-column: 1 / -1;
+}
+
+.intercepts-container > div {
+  margin: 5px;
+  gap: 5px;
+}
+
+.intercepts-container button {
+  margin-top: 5px;
+  gap: 2px;
+  background-color: green;
+}
+
+.center-passes-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  justify-items: center;
+  align-items: center;
+  border: 1px solid green;
+  border-radius: 25px;
+}
+
+.center-passes-container h1 {
+  grid-column: 1 / -1;
+}
+
+.center-passes-container > div {
+  margin: 5px;
+}
+
+.center-passes-container button {
+  margin-top: 10px;
+  background-color: green;
+}

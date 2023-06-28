@@ -149,6 +149,9 @@
 
 
 import React, { useState, useEffect } from 'react';
+import './scoringPage.css'
+import WeatherInfo from './Weather';
+import CountdownTimer from './CountDownTimer';
 
 const Scoring = () => {
   const [homeScore, setHomeScore] = useState(0);
@@ -284,69 +287,208 @@ const Scoring = () => {
     setWinner('');
   };
 
-  return (
-    <div>
+//   return (
+//     <div>
 
-      <h1>Select Teams</h1>
-              <div>
-                <label>Home Team:</label>
-                <select onChange={(e) => handleTeamSelect(e.target.value, 'home')}>
-                  <option value="">Select a team</option>
-                  {teams.map((team) => (
-                    <option key={team.team_id} value={team.team_name}>{team.team_name}</option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <label>Opposition Team:</label>
-                <select onChange={(e) => handleTeamSelect(e.target.value, 'opposition')}>
-                  <option value="">Select a team</option>
-                  {teams.map((team) => (
-                    <option key={team.team_id} value={team.team_name}>{team.team_name}</option>
-                  ))}
-                </select>
-              </div>
+//       <h1>Select Teams</h1>
+//               <div>
+//                 <label>Home Team:</label>
+//                 <select onChange={(e) => handleTeamSelect(e.target.value, 'home')}>
+//                   <option value="">Select a team</option>
+//                   {teams.map((team) => (
+//                     <option key={team.team_id} value={team.team_name}>{team.team_name}</option>
+//                   ))}
+//                 </select>
+//               </div>
+//               <div>
+//                 <label>Opposition Team:</label>
+//                 <select onChange={(e) => handleTeamSelect(e.target.value, 'opposition')}>
+//                   <option value="">Select a team</option>
+//                   {teams.map((team) => (
+//                     <option key={team.team_id} value={team.team_name}>{team.team_name}</option>
+//                   ))}
+//                 </select>
+//               </div>
 
-              {showSummary ? (
-          <>
-            <h1>Match Summary</h1>
-            <p>Winner: {winner}</p>
-            <p>{selectedTeams.home} Score: {homeScore}</p>
-            <p>{selectedTeams.home} Missed: {homeMissed}</p>
-            <p>{selectedTeams.opposition} Score: {oppositionScore}</p>
-            <p>{selectedTeams.opposition} Missed: {oppositionMissed}</p>
-            <p>Intercepts:</p>
-            <ul>
-              {Object.entries(intercepts).map(([position, count]) => (
-                <li key={position}>{position}: {count}</li>
-              ))}
-            </ul>
-            <p>Center Passes:</p>
-            <ul>
-              {Object.entries(centerPasses).map(([position, count]) => (
-                <li key={position}>{position}: {count}</li>
-              ))}
-            </ul>
+//               {showSummary ? (
+//           <>
+//             <h1>Match Summary</h1>
+//             <p>Winner: {winner}</p>
+//             <p>{selectedTeams.home} Score: {homeScore}</p>
+//             <p>{selectedTeams.home} Missed: {homeMissed}</p>
+//             <p>{selectedTeams.opposition} Score: {oppositionScore}</p>
+//             <p>{selectedTeams.opposition} Missed: {oppositionMissed}</p>
+//             <p>Intercepts:</p>
+//             <ul>
+//               {Object.entries(intercepts).map(([position, count]) => (
+//                 <li key={position}>{position}: {count}</li>
+//               ))}
+//             </ul>
+//             <p>Center Passes:</p>
+//             <ul>
+//               {Object.entries(centerPasses).map(([position, count]) => (
+//                 <li key={position}>{position}: {count}</li>
+//               ))}
+//             </ul>
 
-            <button onClick={handleReset}>New Game</button>
-          </>
-        ) : (
-          <>
-            <h1>Scoring</h1>
-            <div>
-              <p>Home Team: {selectedTeams.home}</p>
-              <p>Home Score: {homeScore}</p>
-              <p>Home Missed: {homeMissed}</p>
-              <button onClick={() => handleScoreIncrement('home', true)}>Home GS Scored</button>
-              <button onClick={() => handleScoreIncrement('home', false)}>Home GS Missed</button>
-            </div>
-            <div>
-              <p>Opposition Team: {selectedTeams.opposition}</p>
-              <p>Opposition Score: {oppositionScore}</p>
-              <p>Opposition Missed: {oppositionMissed}</p>
-              <button onClick={() => handleScoreIncrement('opposition', true)}>Scored</button>
-              <button onClick={() => handleScoreIncrement('opposition', false)}>Missed</button>
-            </div>
+//             <button onClick={handleReset}>New Game</button>
+//           </>
+//         ) : (
+//           <>
+//             <h1>Scoring</h1>
+//             <div>
+//               <p>Home Team: {selectedTeams.home}</p>
+//               <p>Home Score: {homeScore}</p>
+//               <p>Home Missed: {homeMissed}</p>
+//               <button onClick={() => handleScoreIncrement('home', true)}>Home GS Scored</button>
+//               <button onClick={() => handleScoreIncrement('home', false)}>Home GS Missed</button>
+//             </div>
+//             <div>
+//               <p>Opposition Team: {selectedTeams.opposition}</p>
+//               <p>Opposition Score: {oppositionScore}</p>
+//               <p>Opposition Missed: {oppositionMissed}</p>
+//               <button onClick={() => handleScoreIncrement('opposition', true)}>Scored</button>
+//               <button onClick={() => handleScoreIncrement('opposition', false)}>Missed</button>
+//             </div>
+//           <h1>Intercepts</h1>
+//           <div>
+//             <p>GS: {intercepts.GS}</p>
+//             <button onClick={() => handleIncrement('GS')}>GS</button>
+//           </div>
+//           <div>
+//             <p>GA: {intercepts.GA}</p>
+//             <button onClick={() => handleIncrement('GA')}>GA</button>
+//           </div>
+//           <div>
+//             <p>WA: {intercepts.WA}</p>
+//             <button onClick={() => handleIncrement('WA')}>WA</button>
+//           </div>
+//           <div>
+//             <p>C: {intercepts.C}</p>
+//             <button onClick={() => handleIncrement('C')}>C</button>
+//           </div>
+//           <div>
+//             <p>GD: {intercepts.GD}</p>
+//             <button onClick={() => handleIncrement('GD')}>GD</button>
+//           </div>
+//           <div>
+//             <p>WD: {intercepts.WD}</p>
+//             <button onClick={() => handleIncrement('WD')}>WD</button>
+//           </div>
+//           <div>
+//             <p>GK: {intercepts.GK}</p>
+//             <button onClick={() => handleIncrement('GK')}>GK</button>
+//           </div>
+
+//           <h1>Center Passes</h1>
+//           <div>
+//             <p>GA: {centerPasses.GA}</p>
+//             <button onClick={() => handleCenterPassIncrement('GA')}>GA</button>
+//           </div>
+//           <div>
+//             <p>GD: {centerPasses.GD}</p>
+//             <button onClick={() => handleCenterPassIncrement('GD')}>GD</button>
+//           </div>
+//           <div>
+//             <p>WA: {centerPasses.WA}</p>
+//             <button onClick={() => handleCenterPassIncrement('WA')}>WA</button>
+//           </div>
+//           <div>
+//             <p>WD: {centerPasses.WD}</p>
+//             <button onClick={() => handleCenterPassIncrement('WD')}>WD</button>
+//           </div>
+
+      
+//           <button onClick={handleSubmit}>Submit</button>
+//         </>
+//       )}
+//     </div>
+//   );
+// };
+return (
+  <div className="container">
+    <WeatherInfo />
+    <CountdownTimer />
+    <h1>Select Teams</h1>
+    <div className="select-teams-container">
+      <div>
+        {/* <label>Home Team:</label> */}
+        <select onChange={(e) => handleTeamSelect(e.target.value, 'home')}>
+          <option value="">Select a team</option>
+          {teams.map((team) => (
+            <option key={team.team_id} value={team.team_name}>
+              {team.team_name}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div>
+        {/* <label>Opposition Team:</label> */}
+        <select onChange={(e) => handleTeamSelect(e.target.value, 'opposition')}>
+          <option value="">Select a team</option>
+          {teams.map((team) => (
+            <option key={team.team_id} value={team.team_name}>
+              {team.team_name}
+            </option>
+          ))}
+        </select>
+      </div>
+    </div>
+
+    {showSummary ? (
+      <div className="match-summary-container">
+        <h1>Match Summary</h1>
+        <p>Winner: {winner}</p>
+        <p>
+          {selectedTeams.home} Score: {homeScore}
+        </p>
+        <p>
+          {selectedTeams.home} Missed: {homeMissed}
+        </p>
+        <p>
+          {selectedTeams.opposition} Score: {oppositionScore}
+        </p>
+        <p>
+          {selectedTeams.opposition} Missed: {oppositionMissed}
+        </p>
+        <p>Intercepts:</p>
+        <ul>
+          {Object.entries(intercepts).map(([position, count]) => (
+            <li key={position}>
+              {position}: {count}
+            </li>
+          ))}
+        </ul>
+        <p>Center Passes:</p>
+        <ul>
+          {Object.entries(centerPasses).map(([position, count]) => (
+            <li key={position}>
+              {position}: {count}
+            </li>
+          ))}
+        </ul>
+
+        <button onClick={handleReset}>New Game</button>
+      </div>
+    ) : (
+      <div className="scoring-container">
+        <h1>Scoring</h1>
+        <div>
+          <p>{selectedTeams.home}</p>
+          <p>Home Score: {homeScore}</p>
+          <p>Home Missed: {homeMissed}</p>
+          <button onClick={() => handleScoreIncrement('home', true)}>Home GS Scored</button>
+          <button onClick={() => handleScoreIncrement('home', false)}>Home GS Missed</button>
+        </div>
+        <div>
+          <p>{selectedTeams.opposition}</p>
+          <p>Opposition Score: {oppositionScore}</p>
+          <p>Opposition Missed: {oppositionMissed}</p>
+          <button onClick={() => handleScoreIncrement('opposition', true)}>Scored</button>
+          <button onClick={() => handleScoreIncrement('opposition', false)}>Missed</button>
+        </div>
+
+        <div className="intercepts-container">
           <h1>Intercepts</h1>
           <div>
             <p>GS: {intercepts.GS}</p>
@@ -376,7 +518,9 @@ const Scoring = () => {
             <p>GK: {intercepts.GK}</p>
             <button onClick={() => handleIncrement('GK')}>GK</button>
           </div>
+        </div>
 
+        <div className="center-passes-container">
           <h1>Center Passes</h1>
           <div>
             <p>GA: {centerPasses.GA}</p>
@@ -394,13 +538,13 @@ const Scoring = () => {
             <p>WD: {centerPasses.WD}</p>
             <button onClick={() => handleCenterPassIncrement('WD')}>WD</button>
           </div>
+        </div>
 
-      
-          <button onClick={handleSubmit}>Submit</button>
-        </>
-      )}
-    </div>
-  );
-};
+        <button onClick={handleSubmit}>Submit</button>
+      </div>
+    )}
+  </div>
+);
+}
 
 export default Scoring;

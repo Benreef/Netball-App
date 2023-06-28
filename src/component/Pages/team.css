@@ -1,0 +1,88 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form {
+  background-color: #d1d1d195;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  border: 1px solid rgb(10, 104, 31);
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+  
+.label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+
+.textField {
+  margin-bottom: 0.5rem;
+}
+
+.textField .MuiOutlinedInputRoot:hover fieldset {
+  border-color: green;
+}
+
+.textField .MuiOutlinedInputRoot.Mui-focused fieldset {
+  border-color: green;
+}
+  
+
+input[type="text"],
+select {
+  background-color: #d1d1d195;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: green;
+  color: #fff;
+  cursor: pointer;
+}
+
+button[type="submit"] {
+  background-color: #28a745;
+}
+
+button[type="button"] {
+  background-color: #6c757d;
+  margin-right: 0.5rem;
+}
+select {
+  background-color: #747475;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #fff;
+}
+
+option {
+  background-color: #d1d1d195;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+}
