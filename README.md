@@ -18,14 +18,13 @@ This app allows users (mainly netball teams (Or spectators!)) to effectively tra
 The planning process for this applicaiton was a steep learning curve for me, I often plan more throughly than I did for this app, instead diving head first into the development stage. Even though I had planned out an initial idea of the database structure it was nothing compared to how it would look towards the end of the project. For future building the data somewhere towards the middle and coding the fit the data structure I believe would be more beneficial as I found myself dropping tables and the database quite often to rememdy my shortcomings.
 
 
-![image of the user stories for the app](./resources/)
+![image of the user stories for the app](./resources/userStories.png)
 
 Then the wireframes for the app were put together:
-![image of the wireframes for the app](./resources/)
-![image of the wireframes for the app](./resources/)
+![image of the wireframes for the app](./resources/wireframes.png)
 
 
-![image of the database relationships for the app](./resources/1-many.png)
+![image of the database relationships for the app](./resources/DBrelations.png)
 
 
 
