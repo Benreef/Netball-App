@@ -7,7 +7,9 @@ import Login from './component/Pages/Login';
 import Logout from './component/Pages/Logout';
 import CreateTeamForm from './component/Pages/Team';
 
+
 import { useState } from 'react';
+import Scoring from './component/Pages/GameStartPage';
 
 function App() {
 
@@ -24,6 +26,7 @@ function App() {
         <Route path='/Create' element={<CreateTeamForm />} />
         <Route path='/About' element={<AboutPage />} />
         <Route path="/Logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />}></Route>
+        <Route path='/Scoring' element={<Scoring />} />
       </Routes>
       
       </>

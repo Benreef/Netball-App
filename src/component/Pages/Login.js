@@ -32,7 +32,7 @@ function Login({ setIsLoggedIn, setUserName }) {
         setIsLoggedIn(true);
         setUserName(res.email);
       })
-      .then(() => navigate("/", { replace: true }));
+      .then(() => navigate("/About", { replace: true }));
   };
   
   return (

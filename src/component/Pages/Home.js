@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import DefaultLayout from '../Layout/DefaultLayout';
 import CountdownTimer from './CountDownTimer';
 import Clock from './Clock';
-import Scoring from './Scoring';
+import Scoring from './GameStartPage';
 import WeatherInfo from './Weather';
 
 const HomePage = () => {

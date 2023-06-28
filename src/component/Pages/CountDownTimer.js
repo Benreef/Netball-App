@@ -38,6 +38,14 @@ const CountdownTimer = () => {
     clearInterval(intervalRef.current);
   };
 
+  const resetTimer = () => {
+    setIsRunning(false);
+    clearInterval(intervalRef.current);
+    setQuarter(1);
+    setTimer(900);
+    localStorage.removeItem("countdownTimer");
+  };
+
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
@@ -53,7 +61,10 @@ const CountdownTimer = () => {
       <div>Quarter: {quarter}</div>
       <div>Time Remaining: {formatTime(timer)}</div>
       {!isRunning ? (
-        <button onClick={startTimer}>Start</button>
+        <>
+          <button onClick={startTimer}>Start</button>
+          <button onClick={resetTimer}>Reset</button>
+        </>
       ) : (
         <button onClick={pauseTimer}>Pause</button>
       )}

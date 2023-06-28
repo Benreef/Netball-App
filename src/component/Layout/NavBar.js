@@ -115,6 +115,7 @@ const NavBar = () => {
         </Box>
         <Box>
           <Button component={Link} to='/' sx={{ color: 'white', marginRight: 2 }}>Home</Button>
+          <Button component={Link} to='/GamePage'sx={{ color: 'white', marginRight: 2 }}>Start A Game</Button>
           <Button component={Link} to='/Create' sx={{ color: 'white', marginRight: 2 }}>Create A Team</Button>
           <Button component={Link} to='/About' sx={{ color: 'white', marginRight: 2 }}>About</Button>
           <Button component={Link} to='/SignUp' sx={{ color: 'white', marginRight: 2 }}>Sign Up</Button>
